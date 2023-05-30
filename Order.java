@@ -25,9 +25,14 @@ public class Order extends Menu{
     }
 
     public String getAll() {
-        return name + " " +price + " " + description;
+        return name + ", " +price + ", " + description;
     }
 
-
+    public static double totalPrice() {
+        double sum = 0;
+        for (Order num: orderList)
+            sum = sum + num.getPrice();
+        return sum;
+    }
 }
 
