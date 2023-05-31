@@ -21,15 +21,23 @@ public class Main {
         int orderNum;
         int count = 0;
         Menu menu = new Menu();
-        menu.coffee();
+        menu.menuAll();
         while (true) {
             System.out.println(introduceMenu); // 첫번째 메뉴판 보여주기
             System.out.print("1번에서 6번까지의 숫자를 입력해주세요 >> ");
             orderNum = sc.nextInt();
+            menu.setMenuList(orderNum);
             switch (orderNum) {
-                case 1:
-                    menu.coffeeList();
-                    break; //break안하는 바보는 어딨을까
+                case 0:
+                    menu.getTotal();
+                    System.out.println("1. 돌아가기");
+                    int managerNum = sc.nextInt();
+                    if (managerNum == 1) {
+                        continue;
+                    }
+                case 1,2,3,4:
+                    menu.getMenuList();
+                    break;
                 case 5:
                     menu.getOrderList();
                     System.out.println();
@@ -40,9 +48,11 @@ public class Main {
                         System.out.println("주문이 완료되었습니다!");
                         System.out.println();
                         count += 1;
-                        System.out.printf("대기번호 [ %d ] 번 입니다.", count);
+                        System.out.printf("대기번호 [ %d ] 번 입니다.%n", count);
+                        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
                         try {
                             Thread.sleep(3000);
+                            menu.setTotal();
                             continue;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -76,7 +86,7 @@ public class Main {
                 int checkNum = sc.nextInt();
 
                 if (checkNum == 1) {
-                    menu.saveChoice(choiceNum);
+                    menu.setOrderList(choiceNum);
                     continue;
                 }
                 else if (checkNum == 2) {
