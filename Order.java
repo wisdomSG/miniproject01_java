@@ -34,7 +34,7 @@ public class Order extends Menu{
     }
 
     public String getAll() {
-        return name + " | " +price + " | " + count +"개 | "+ description;
+        return name + " | "+price + "| " + count + "개 |" + description;
     }
 
     public static double totalPrice() {

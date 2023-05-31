@@ -20,6 +20,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int orderNum;
         int count = 0;
+        int setNum = 0;
         Menu menu = new Menu();
         menu.menuAll();
         while (true) {
@@ -78,14 +79,24 @@ public class Main {
 
             if (orderNum >=1 && orderNum <= 4) {
                 int choiceNum = sc.nextInt();
-
                 menu.burgerChoice(choiceNum);
+
+                if (orderNum == 3) {
+                    System.out.println("위 메뉴의 어떤 옵션으로 추가하시겠습니까?");
+                    System.out.println("Double은 아메리카노가 포함된 옵션이며 3.0추가시 이용가능합니다.");
+                    System.out.println("1. Single    2. Double(+3.0)");
+                    setNum = sc.nextInt();
+                }
 
                 System.out.println("위 메뉴를 장바구니에 추가하겠습니까? 1. 확인 2. 취소");
 
                 int checkNum = sc.nextInt();
 
                 if (checkNum == 1) {
+                    if (setNum == 2) {
+                        menu.setOrderPlusList(choiceNum);
+                        continue;
+                    }
                     menu.setOrderList(choiceNum);
                     continue;
                 }

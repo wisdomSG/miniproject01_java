@@ -106,6 +106,8 @@ public class Menu {
         Shop menu = menuList.get(num - 1);
         System.out.println(menu.getAll());
     }
+
+
     void setOrderList (int num) { // 선택한 메뉴를 orderlist에 저장
         Shop menu = menuList.get(num - 1);
         int count = 1;
@@ -126,6 +128,30 @@ public class Menu {
 
         System.out.println(menu.getAll() );
         System.out.println(menu.getName() + "가 장바구니에 추가되었습니다.");
+        System.out.println();
+    }
+
+    void setOrderPlusList (int num) { // Double메뉴 저장
+        Shop menu = menuList.get(num - 1);
+        int count = 1;
+        boolean doubleCheck = true;
+        String newName = menu.getName() + "(Double)";
+        double newPrice = menu.getPrice() + 3;
+        for (Order order: orderList) {
+            if (order.getName().equals(newName)) {
+                order.setCount();
+                doubleCheck = false;
+                break;
+            }
+        }
+
+        if (doubleCheck) {
+            Order newOrder = new Order(newName, newPrice, count, menu.getDescription());
+            orderList.add(0, newOrder);
+        }
+        Order orderMenu = orderList.get(0);
+        System.out.println(orderMenu.getAll());
+        System.out.println(newName + "가 장바구니에 추가되었습니다.");
         System.out.println();
     }
 
