@@ -30,7 +30,7 @@ public class Menu {
 
     }
 
-    void NonCoffee() {
+    void nonCoffee() {
         Shop noncoffee1 = new Shop("StrawberryLatte", 6.0, "딸기가 내 입안으로 한가득 딸기라떼");
         Shop noncoffee2 = new Shop("BananaLatte", 6.0, "바나나가 내 입안으로 한가득 바나나라떼");
         Shop noncoffee3 = new Shop("MilkTeaLatte", 5.5, "홍차의 은은한 향과 부드러운 우유가 어우러진 음료");
@@ -41,22 +41,28 @@ public class Menu {
         nonCoffeeList.add(2, noncoffee3);
         nonCoffeeList.add(3, noncoffee4);
     }
-    void burgerList () {
-        for (Shop coffee : coffeeList) {
-            System.out.println("메뉴명: " + coffee.getName());
-            System.out.println("가격: $" + coffee.getPrice());
-            System.out.println("설명: " + coffee.getDescription());
-            System.out.println();
+
+    void brunch() {
+
+    }
+
+    void dessert() {
+
+    }
+    void coffeeList () {
+        for (int i=0 ; i < coffeeList.size(); i++) {
+            Shop coffee = coffeeList.get(i);
+            System.out.print(i+1 + ". 메뉴명: " + String.format("%-17s",coffee.getName()));
+            System.out.print("| 가격: $ " + coffee.getPrice());
+            System.out.println(" | 설명: " + coffee.getDescription());
         }
     }
-    void burgerChoice (String num) { //선택한 버거 보여주기
-        int number = Integer.parseInt(num);
-        Shop menu = coffeeList.get(number - 1);
+    void burgerChoice (int num) { //선택한 버거 보여주기
+        Shop menu = coffeeList.get(num - 1);
         System.out.println(menu.getAll());
     }
-    void saveChoice (String num) {
-        int number = Integer.parseInt(num);
-        Shop menu = coffeeList.get(number - 1);
+    void saveChoice (int num) {
+        Shop menu = coffeeList.get(num - 1);
         Order order = new Order(menu.getName(), menu.getPrice(), menu.getDescription());
         orderList.add(0, order);
         System.out.println(menu.getAll() );

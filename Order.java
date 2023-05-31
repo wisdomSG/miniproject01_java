@@ -34,5 +34,9 @@ public class Order extends Menu{
             sum = sum + num.getPrice();
         return sum;
     }
+
+    public static void listClear() {
+        orderList.clear();
+    }
 }
 
