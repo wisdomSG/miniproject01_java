@@ -16,7 +16,7 @@ public class Main {
                 "5. Order           | 장바구니를 확인 후 주문합니다.\n" +
                 "6. Cancel          | 진행중인 주문을 취소합니다.";
 
-        System.out.println("ROUN CAFE 에 오신걸 환영합니다.");
+        System.out.println("     [ROUN CAFE]");
         Scanner sc = new Scanner(System.in);
         int orderNum;
         int count = 0;
@@ -25,19 +25,21 @@ public class Main {
         menu.menuAll();
         while (true) {
             System.out.println(introduceMenu); // 첫번째 메뉴판 보여주기
+            System.out.println();
             System.out.print("1번에서 6번까지의 숫자를 입력해주세요 >> ");
             orderNum = sc.nextInt();
             menu.setMenuList(orderNum);
             switch (orderNum) {
                 case 0:
-                    menu.getTotal();
+                    menu.getTotalList();
                     System.out.println("1. 돌아가기");
                     int managerNum = sc.nextInt();
                     if (managerNum == 1) {
                         continue;
                     }
                 case 1,2,3,4:
-                    menu.getMenuList();
+                    menu.getMenuList(orderNum);
+                    System.out.print("원하는 메뉴의 번호를 입력해주세요 (9: 메뉴판) >> ");
                     break;
                 case 5:
                     menu.getOrderList();
@@ -53,13 +55,17 @@ public class Main {
                         System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
                         try {
                             Thread.sleep(3000);
-                            menu.setTotal();
+                            menu.setTotalList();
                             continue;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
                     else if (orderCheck == 2) {
+                        continue;
+                    }
+                    else {
+                        System.out.println("그런 번호는 없습니다.");
                         continue;
                     }
                     break;
@@ -75,35 +81,53 @@ public class Main {
                         continue;
                     }
                     break;
+                default:
+                    System.out.println("없는 숫자를 입력하셨습니다.");
+                    break;
             }
 
             if (orderNum >=1 && orderNum <= 4) {
                 int choiceNum = sc.nextInt();
-                menu.burgerChoice(choiceNum);
+                if (choiceNum == 9) {
+                    continue;
+                }
+                menu.getChoice(choiceNum);
 
                 if (orderNum == 3) {
                     System.out.println("위 메뉴의 어떤 옵션으로 추가하시겠습니까?");
                     System.out.println("Double은 아메리카노가 포함된 옵션이며 3.0추가시 이용가능합니다.");
                     System.out.println("1. Single    2. Double(+3.0)");
                     setNum = sc.nextInt();
+                    System.out.println("위 메뉴를 장바구니에 추가하겠습니까? 1. 확인 2. 취소");
+                    int checkNum = sc.nextInt();
+                    if (checkNum == 1) {
+                        if(setNum == 2) {
+                            menu.setOrderPlusList(choiceNum);
+                            continue;
+                        }
+                        else if  (setNum ==1) {
+                            menu.setOrderList(choiceNum);
+                            continue;
+                        }
+                    }
                 }
 
-                System.out.println("위 메뉴를 장바구니에 추가하겠습니까? 1. 확인 2. 취소");
-
-                int checkNum = sc.nextInt();
-
-                if (checkNum == 1) {
-                    if (setNum == 2) {
-                        menu.setOrderPlusList(choiceNum);
+                else if (orderNum != 3) {
+                    System.out.println("위 메뉴를 장바구니에 추가하겠습니까? 1. 확인 2. 취소");
+                    int checkNum = sc.nextInt();
+                    if(checkNum == 1) {
+                        menu.setOrderList(choiceNum);
                         continue;
                     }
-                    menu.setOrderList(choiceNum);
-                    continue;
-                }
-                else if (checkNum == 2) {
-                    continue;
+                    else if (checkNum == 2) {
+                        continue;
+                    }
                 }
             }
+
+
+
+
 
         }
     }

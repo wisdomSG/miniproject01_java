@@ -25,6 +25,6 @@ public class Shop extends Menu{
     }
 
     public String getAll() {
-        return name + "| " +price + "| " + description;
+        return name + "  | W " +price + " | " + description;
     }
 }

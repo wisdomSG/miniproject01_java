@@ -34,7 +34,7 @@ public class Order extends Menu{
     }
 
     public String getAll() {
-        return name + " | "+price + "| " + count + "개 |" + description;
+        return String.format("%-26s",name) + "| W "+String.format("%-8s",price) + "| " + count + "개 |" + description;
     }
 
     public static double totalPrice() {

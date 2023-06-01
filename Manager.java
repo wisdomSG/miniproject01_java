@@ -29,7 +29,7 @@ public class Manager extends  Menu{
     }
 
     public String getAll() {
-        return name + " | " +price + " | " + description;
+        return String.format("%-26s",name) + " | " +price + " | " + description;
     }
 
     public static double totalPrice() {
