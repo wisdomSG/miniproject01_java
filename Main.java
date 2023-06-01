@@ -81,6 +81,8 @@ public class Main {
                         continue;
                     }
                     break;
+                case 9:
+                    continue;
                 default:
                     System.out.println("없는 숫자를 입력하셨습니다.");
                     break;

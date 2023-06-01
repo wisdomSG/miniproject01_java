@@ -116,7 +116,7 @@ public class Menu {
         }
         for (int i = 0; i < menuList.size(); i++) {
             Shop menu = menuList.get(i);
-            System.out.print(i + 1 + ". 메뉴명: " + String.format("%-18s", menu.getName()) + "|");
+            System.out.print((i + 1) + ". 메뉴명: " + String.format("%-18s", menu.getName()) + "|");
             System.out.print(" 가격: W " + menu.getPrice());
             System.out.println(" | 설명: " + menu.getDescription());
         }
